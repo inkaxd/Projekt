@@ -1,0 +1,78 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+
+
+{% block title %}Konfiguracja {{ car.name }}{% endblock %}
+
+{% block way %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+      {{ flashMessage | raw}}
+{% endfor %}
+
+
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>
+          {{ car.name }}
+        </h2>
+      </div>
+      <div class="col-md-6">
+	
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block description %}
+<h2>Konfiguracja samochodu <strong>{{ car.name }}</strong></h2>
+
+<div class="form-group col-md-4 col-md-offset-4">
+{{ form_start(form) }}
+{{ form_errors(form) }}
+
+
+
+{{ form_label(form.data1) }}
+{{ form_widget(form.data1, {'attr': {'class': 'form-control'}}) }}
+{{ form_errors(form.data1) }}
+<br>
+{{ form_label(form.data2) }}
+{{ form_widget(form.data2, {'attr': {'class': 'form-control'}}) }}
+{{ form_errors(form.data2) }}
+<br>
+{{ form_label(form.param3) }}
+{{ form_widget(form.param3, {'attr': {'class': 'form-control'}}) }}
+{{ form_errors(form.param3) }}
+<br>
+{{ form_label(form.param4) }}
+{{ form_widget(form.param4, {'attr': {'class': 'form-control'}}) }}
+{{ form_errors(form.param4) }}
+*informujemy, że odbiór samochodu nie może odbyć się dalej niż 25km od naszej filii i kosztuje 60zł. 
+<br>
+<br>
+{{ form_label(form.param5) }}
+{{ form_widget(form.param5, {'attr': {'class': 'form-control'}}) }}
+{{ form_errors(form.param5) }}
+*Za każdego dodatkowego kierowce wnoszona jest opłata 100zł.
+</div>
+
+{{ form_rest(form) }}
+
+
+	<div class="form-group col-md-4 col-md-offset-4">
+        <button class="btn btn-base btn-icon btn-icon-right btn-sign-in " type="submit" id="_submit" name="_submit">
+        <span>Biorę!</span>
+        </button>
+	</div>
+
+{{ form_end(form) }}
+
+
+
+
+{% endblock %}

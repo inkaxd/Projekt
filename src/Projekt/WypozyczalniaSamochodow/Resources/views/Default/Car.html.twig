@@ -1,0 +1,244 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+
+
+{% block title %} {{ car.name }} {% endblock %}
+
+{% block way %}
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+      {{ flashMessage | raw}}
+{% endfor %}
+
+
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>
+          {{ car.name }}
+        </h2>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block description %}
+
+<section class="slice bg-white">
+  <div class="wp-section shop">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="product-gallery">
+                <div class="primary-image">
+                  <a href="#" class="theater" rel="group">
+                    <img src="{{ car.image }}" class="img-responsive" alt="{{ car.name }}">					
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="product-info">
+                <h3 class="product-title">
+                  {{ car.name }} </br>
+                </h3>
+               
+                <hr>
+			
+                <div class="product-price">           
+                  <span class="price">
+                    {{ car.price }} PLN/dzień
+                  </span>
+                </div>       
+                <a href="{{ path('configuration_homepage', {id: car.id}) }}" class="btn btn-base btn-icon btn-cart">
+                  <span>
+                    Wypożycz
+                  </span>
+                </a>         
+               
+                <hr>
+                <div class="product-short-info">
+                  <p>
+                    <i class="fa fa-heart">
+                    </i>
+                    <strong>
+                      Dostępność
+                    </strong>
+                    : Dostępny
+                  </p>
+                  <p>
+                    <i class="fa fa-inbox">
+                    </i>
+                    <strong>
+                      Kategoria
+                    </strong>
+                    : {{ car.genre }}
+                  </p>
+                  <p>
+                    <i class="fa fa-check">
+                    </i>
+                    <strong>
+                      Rok produkcji:
+                    </strong>
+                    : {{ car.year }}
+                  </p>
+				   <p>
+                    <i class="fa fa-check">
+                    </i>
+                    <strong>
+                      Popularność
+                    </strong>
+                    : {{ car.loan }} sprzedanych sztuk
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+		 
+		  
+		  
+		  
+		  
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Tabs -->
+              <div class="tabs-framed mt-20">
+                <ul class="tabs clearfix">
+                  <li class="active">
+                    <a href="#tab-1" data-toggle="tab">
+                      Opis
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-2" data-toggle="tab">
+                      Parametry
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-3" data-toggle="tab">
+                      Recenzje
+                    </a>
+                  </li>
+                </ul>
+                
+                <div class="tab-content">
+                  
+                  <!-- Tab 1 -->
+                  <div class="tab-pane fade in active" id="tab-1">
+                    <div class="tab-body">
+                      <div class="section-title-wr">
+                        <h3 class="section-title left">
+                          Product description
+                        </h3>
+                      </div>
+                      <p>
+                        {{ car.description }}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <!-- Tab 2 -->
+                  <div class="tab-pane fade" id="tab-2">
+                    <div class="tab-body">
+                      <div class="section-title-wr">
+                        <h3 class="section-title left">
+                          Lista parametrów
+                        </h3>
+						
+						
+                      </div>                     
+                      
+					<ul>
+                      <li>Ilość drzwi : {{ car.param1 }}</li>
+					  <li>Pojemność silnika : {{car.param2}}</li>
+					  <li>Rodzaj paliwa : {{car.param3}}</li>
+					  <li>Liczba miejsc : {{car.param4}}</li>
+					  <li>Skrzynia biegów : {{car.param5}}</li>
+					</ul>
+                     
+                      
+                    </div>
+                  </div>
+                  
+                  <!-- Tab 3 -->
+                  <div class="tab-pane fade" id="tab-3">
+                    <div class="tab-body">
+				
+                      <div class="comment-list clearfix" id="comments">
+                           <div class="comment-list clearfix" id="comments">
+						<a href="{{ path('add_homepage', {id: car.id}) }}" class="link-add-comment anchor" hidefocus="true">
+                          Napisz recenzje
+                        </a>
+						</div>
+						{% if review is empty %}
+							<h2>
+							Ten samochód nie został jeszcze oceniony.
+							</h2>
+						{% endif %}
+						
+						
+                      
+                        <!-- Wpisy -->
+						
+	<ol>	
+{% for r in review %}	
+						
+    <li class="comment">
+        <div class="comment-body bb">
+            <div class="comment-avatar">
+                <div class="avatar"><img src="http://www.bt4.pl/dummy/59x59/232a87/e8e9f7.jpg" alt="">
+                </div>
+            </div>
+            <div class="comment-text">
+                <div class="comment-author clearfix">
+					<a href="#" class="link-author" hidefocus="true"><strong>{{ r.title }}</strong></a> </br>
+                    <a href="#" class="link-author" hidefocus="true"><small>autor: {{ r.user }}</small></a>
+                    <span class="comment-meta"><span class="comment-date">{{ r.date }}</span> | <a href="#addcomments" class="link-reply anchor" hidefocus="true">Reply</a>
+                    </span>
+                </div>
+                <div class="comment-entry">
+				{{ r.description | raw }}
+                   
+                </div>
+            </div>
+        </div>
+    </li>
+						
+        
+	{% endfor %}		
+ </ol> 
+						</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+		
+		
+		 
+		  </div>
+		
+		
+		
+      </div>
+    </div>
+  </div>
+  
+  
+  
+  
+  
+</section>
+
+{% endblock %}

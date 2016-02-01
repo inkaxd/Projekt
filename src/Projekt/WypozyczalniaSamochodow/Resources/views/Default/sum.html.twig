@@ -1,0 +1,123 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+
+
+{% block title %}Podsumowanie zakupów{% endblock %}
+
+{% block way %}
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>
+          Podsumowanie zakupów
+        </h2>
+      </div>
+      <div class="col-md-6">
+        <ol class="breadcrumb">
+          <li>
+            <a href="#">
+              Home
+            </a>
+          </li>
+		  <li>
+            <a href="#">
+              Koszyk
+            </a>
+          </li>
+          <li class="active">
+            Podsumowanie
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+{% block content %}
+
+<section class="slice bg-white bb">
+        <div class="wp-section shop">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+					
+
+					
+                     <div class="well">
+							  <h4>Podsumowanie, sprawdz swoje zamówienie</h4>
+                      </div>
+					
+					
+                       
+                        <table class="table table-cart table-responsive">
+                            <tbody>
+			
+							
+							
+							 {% for c in cart %}   
+                                <tr>
+								
+                                    <td><img src="{{ c.carImage }}" class="img-center" alt=""></td>
+                                    <td><a href="">{{ c.carName }}</a></td>
+                                    <td>PLN {{ c.price }}</td>
+                                    <td>
+                                       1
+                                    </td>
+                                    <td></td>
+                                </tr>
+								
+							 {% endfor %}
+                            </tbody>
+                        </table>
+                       
+                    </div>
+
+					{% if cart is not empty %}					
+                    <div class="col-md-4">
+                        <div class="panel panel-default panel-sidebar-1">
+                            <div class="panel-heading">
+                                <h2>Dane</h2>
+                            </div>
+                            <div class="panel-body bb">
+                                <table class="table table-cart-subtotal">
+                                    <tbody>
+                                        <tr >
+                                            <th>Nazwa użytkownika</th>
+                                            <td class="text-right"><span class="amount">{{ user }}</span></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email</th>
+                                            <td class="text-right">{{ email }}</td>      
+                                        </tr>
+                                        <tr>
+                                            <th>Do zapłacenia</th>
+                                            <td class="text-right">PLN {{ cost }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="panel-body">
+                                <h5>Free shipping</h5>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{ path('payment_homepage') }}" class="btn btn-lg btn-block btn-alt btn-icon btn-icon-right btn-icon-go pull-right">
+                                    <span>Zapłać</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+					{% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

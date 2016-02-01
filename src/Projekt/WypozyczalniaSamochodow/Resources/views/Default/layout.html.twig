@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="" name="description">
+    <meta name="robots" content="index, follow">
+	
+		<title>{% block title %} {% endblock %}</title>
+	 
+	<!-- Essential styles -->
+	{% stylesheets 
+		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/bootstrap/css/bootstrap.css'
+		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/fancybox/jquery.fancybox.css'
+		 %}
+     <link type="text/css" rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+	
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	
+	
+	
+	 <!-- Boomerang styles -->
+	 {% stylesheets 
+	 '@ProjektWypozyczalniaSamochodow/Resources/public/css/global-style.css' filter='cssrewrite' %}
+     <link id="wpStylesheet" type="text/css" rel="stylesheet" href="{{ asset_url }}" media="screen"/>
+	{% endstylesheets %}
+	
+	<!-- Assets -->
+	{% stylesheets 
+		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/owl-carousel/owl.carousel.css'
+		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/owl-carousel/owl.theme.css' 
+		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/css/sky-forms.css'
+		filter='cssrewrite' %}
+     <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+
+		
+	 <!--[if lt IE 9]>
+	{% stylesheets '@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/css/sky-forms-ie8.css' filter='cssrewrite' %}
+     <link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+    <![endif]-->
+	
+	<!-- Required JS -->	
+	{% javascripts 
+		'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.js' 
+		'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery-ui.min.js' 
+		filter='cssrewrite' %}
+	 <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	
+</head>
+
+<body>
+
+  <div>
+            {% block fos_user_content %}
+			
+            {% endblock fos_user_content %}
+   </div>
+
+ <!-- HEADER -->
+        <div id="divHeaderWrapper">
+            <header class="header-standard-2"> 
+<!--moje-->	
+			
+    <!--Nagłówek-->
+		<br>	
+		<div class="page-header">
+			<div class="container text-center">
+				<h1>Wypożyczalnia samochodów</h1>
+			</div>
+		</div>
+	<!--Koniec: Nagłówek-->	
+
+	<!--Środek strony-->
+	
+		<!--Zaloguj/Zarejestruj-->
+		<hr>
+		<div class="navbar-collapse collapse">
+              {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'Witaj'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+			 
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'Wyloguj się'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'Zaloguj się'|trans({}, 'FOSUserBundle') }}</a> |
+				<a href="{{ path('fos_user_registration_register') }}">{{ 'Rejestracja'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}               
+         </div>
+		<hr>
+		<!--Koniec:Zaloguj/Zarejestruj-->
+	
+	<div class="row">		
+		<!--Menu po lewej stronie-->
+		<div class="col-md-2">
+			<div class="navbar-collapse collapse">
+                <ul class="nav nav-pills nav-stacked"> 
+					<li class=""><a tabindex="-1" href="{{ path('demo_homepage') }}">STRONA GŁÓWNA</a></li>
+					<li class=""><a tabindex="-1" href="{{ path('allCars_homepage') }}">SAMOCHODY</a></li>					
+					<li class=""><a tabindex="-1" href="{{ path('cart_homepage') }}">KOSZYK</a></li>	
+					<li class=""><a tabindex="-1" href="{{ path('history_homepage') }}">MOJE ZAMÓWIENIA</a></li>       
+                </ul>              
+            </div>
+		</div>
+		<!--Koniec: Menu po lewej stronie-->
+		
+		<!--Miejsce po prawej-->	
+		<div class="col-md-10">
+		
+			{% block way %} {% endblock %}
+			{% block description %} {% endblock %}
+	
+			<div class="container">
+				{% block content %}{% endblock %}
+			</div>	
+		</div>
+		<!--Koniec: Miejsce po prawej-->
+	</div>
+<!--Koniec: Środek strony-->
+<hr>	
+		
+
+	<!--{% block shipping %} {% endblock %}-->
+
+    <!-- STOPKA -->
+    <footer class="footer">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-lg-9 copyright">
+                    Projekt z pracowni programowanie V
+                </div>
+                <div class="col-lg-3">
+                   
+                </div>
+            </div>
+        </div>
+    </footer>
+	
+	
+
+	<!-- Essentials -->
+	{% javascripts 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/modernizr.custom.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/bootstrap/js/bootstrap.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.mousewheel-3.0.6.pack.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.easing.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.metadata.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.hoverup.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.hoverdir.js'
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.stellar.js' 
+	filter='cssrewrite' %}
+	 <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}	
+	
+	
+	<!-- Forms -->
+	{% javascripts 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/ui-kit/js/jquery.powerful-placeholder.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/ui-kit/js/cusel.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/js/jquery.form.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/js/jquery.validate.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/js/jquery.maskedinput.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/js/jquery.modal.js' 
+	filter='cssrewrite' %}
+	 <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	
+	<!-- Assets -->	
+	{% javascripts 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/hover-dropdown/bootstrap-hover-dropdown.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/page-scroller/jquery.ui.totop.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/mixitup/jquery.mixitup.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/mixitup/jquery.mixitup.init.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/fancybox/jquery.fancybox.pack.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/waypoints/waypoints.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/milestone-counter/jquery.countTo.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/easy-pie-chart/js/jquery.easypiechart.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/social-buttons/js/rrssb.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/nouislider/js/jquery.nouislider.min.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/owl-carousel/owl.carousel.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/bootstrap/js/tooltip.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/bootstrap/js/popover.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/wp.app.js' 
+	filter='cssrewrite' %}
+	 <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	
+	
+<!--[if lt IE 9]>
+	{% javascripts 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/html5shiv.js'
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/respond.min.js' 
+	filter='cssrewrite' %}
+	 <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+<![endif]-->
+
+<!-- Temp -- You can remove this once you started to work on your project -->
+	{% javascripts 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/jquery.cookie.js'
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/wp.switcher.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/wp.ga.js' 
+	filter='cssrewrite' %}
+	 <script type="text/javascript" src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	
+	
+	
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,111 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+
+{% block title %}Moje zamowienia{% endblock %}
+
+{% block way %}
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>
+          Moje zamówienia
+        </h2>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<section class="slice bb">
+        <div class="wp-section">
+            <div class="container">
+	
+
+                <div class="row">
+				
+
+                    <div class="col-md-10">
+                        <div class="sort-list-btn hidden-xs">
+                            <button type="button" class="btn btn-base filter active" data-filter="all"><i class="fa fa-th-large"></i> Wszystkie</button>
+                            <button type="button" class="btn btn-white filter" data-filter="Osobowe">Osobowe</button>
+                            <button type="button" class="btn btn-white filter" data-filter="Dostawcze">Dostawcze</button>
+                        </div>
+                    </div>
+                   
+                </div>
+
+				
+			{% if tab is empty %}
+				<div class="section-title-wr">
+                    <h3 class="section-title left"><span>Jeszcze nie wypożyczyłeś żadnego samochodu.</span></h3>
+                </div>
+			{% elseif tab %}
+				
+			{% else %}
+				<div class="section-title-wr">
+                    <h3 class="section-title left"><span>Samochody, które wypożyczyłeś:</span></h3>
+                </div>
+			{% endif %}
+			
+			
+			
+			
+			
+               
+
+                <div class="row">
+				 <div id="ulSorList">
+
+				{% for c in tab %}   
+					{% for b in c %}
+				
+				
+				
+                    <div class="col-md-3">
+					
+                        <div class="wp-block white">
+                            <div class="figure">
+                                <a href="{{ path('show_homepage', {'id': b.id}) }}">
+                                    <img alt="" src="{{b.image}}"  width="200px" height="280px" class="img-center">
+                                </a>
+                            </div>
+                            <div class="wp-block-body">
+                                <h2 class="name"><a href="{{ path('show_homepage', {'id': b.id}) }}">{{ b.name}}</a></h2>
+                                <h4 class="subtitle">12, Bull Road, Kuala Lumpur</h4>
+                            </div>                            
+                        </div>
+					
+                    </div>
+				
+				
+				{% endfor %}
+				{% endfor %}	
+                   
+				 </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+{#
+{% for c in tab %}   
+	{% for b in c %}   
+		{{b.name}}
+	{% endfor %}
+{% endfor %}
+#}
+
+
+
+
+{% endblock %}

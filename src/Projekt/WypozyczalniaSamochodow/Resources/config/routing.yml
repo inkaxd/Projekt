@@ -1,0 +1,55 @@
+demo_homepage:
+    path:     /
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:index }
+
+car_homepage:
+    path:     /car/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:car }
+
+show_homepage:
+    path:     /show/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:show }
+
+contact_homepage:
+    path:     /contact
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:contact }
+
+allCars_homepage:
+    path:     /allCars
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:allCars }
+
+order_homepage:
+    path:     /order
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:order}
+
+sum_homepage:
+    path:     /sum
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:sum }
+
+cart_homepage:
+    path:     /cart
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:cart }
+
+history_homepage:
+    path:     /history
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:history }
+
+pay_homepage:
+    path:     /pay
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:pay }
+
+cart_remove:
+    path:     /remove/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:remove }
+
+configuration_homepage:
+    path:     /configuration/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:configuration }
+
+add_homepage:
+    path:     /add/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Review:addReview }
+
+genre_homepage:
+    path:     /genre/{genre}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:genre }
