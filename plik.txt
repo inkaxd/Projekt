@@ -3,3 +3,5 @@ coœ
 =======
 pierwszy plik pulniety
 >>>>>>> 47c42ca30c5c005fe617d2ca163d1bb1a7fb05e8
+
+problem z push
