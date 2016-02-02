@@ -71,3 +71,79 @@
     </div>
 {% endblock %}
 	
+{% block content %}
+
+
+
+
+{#
+
+
+{{ form_start(form) }}
+{{ form_errors(form) }}	
+{{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł'}}) }}
+{{ form_widget(form.description, { 'attr': {'placeholder': 'Treść recenzji'} }) }}
+{{ form_end(form) }}
+
+#}
+
+
+<section class="slice bg-white">
+        <div class="wp-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3">                   
+                        <div class="wp-block default user-form no-margin">
+                            <div class="form-header">
+                                <h2>Napisz recenzję do samochodu <strong>{{ car.name }}</strong></h2>
+                            </div>
+                            <div class="form-body">
+                            {#   <form action="" id="frmRegister" class="sky-form"> #} 
+							{{ form_start(form , { 'attr': {'class': 'sky-form'} }) }}
+                                    <fieldset>
+                                        <section>
+                                            <label for="file" class="input">
+                                        {#       <input type="text" name="address" placeholder="Address"> #} 
+										{{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł'}}) }}
+                                            </label>
+                                        </section>
+                                        
+                                        <section>
+                                            <label class="textarea">
+                                        {#        <textarea rows="15" name="info" placeholder="Additional info"></textarea> #} 
+										{{ form_widget(form.description, { 'attr': {'placeholder': 'Treść recenzji', 'rows': '15'} }) }}
+                                            </label>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button class="btn btn-alt btn-icon btn-icon-right btn-icon-go pull-right" type="submit">
+                                                        <span>Zapisz</span>
+                                                    </button>
+                                                </div>
+                                        </section>
+                                    </fieldset>
+								{{ form_end(form) }}
+                         {#     </form>  #}   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% if is_granted("ROLE") %}
+    Hi {{ app.user.username }}
+{% endif %}
+
+{% endblock %}
+
+{% block test %}
+{{ parent() }}
+{% endblock %}	
+	
+	
