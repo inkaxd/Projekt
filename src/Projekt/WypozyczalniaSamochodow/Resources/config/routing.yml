@@ -21,3 +21,7 @@ genre_homepage:
 add_homepage:
     path:     /add/{id}
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Review:addReview }
+
+cart_homepage:
+    path:     /cart
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:cart }
