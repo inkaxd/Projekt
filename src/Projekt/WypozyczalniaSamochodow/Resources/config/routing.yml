@@ -14,3 +14,6 @@ history_homepage:
     path:     /history
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:history }
 
+genre_homepage:
+    path:     /genre/{genre}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:genre }
