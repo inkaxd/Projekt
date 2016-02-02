@@ -21,6 +21,63 @@
 
 
 
+<section class="slice bb">
+        <div class="wp-section">
+            <div class="container">
+	
 
+                <div class="row">
+				
+
+                    <div class="col-md-10">
+                        <div class="sort-list-btn hidden-xs">                 
+
+							<a href="{{ path('allCars_homepage') }}" class="btn btn-white filter">Wszystkie</a>
+							
+							<a href="{{ path('genre_homepage', {'genre': 'osobowe'}) }}" class="btn btn-white filter">Osobowe</a>
+							<a href="{{ path('genre_homepage', {'genre': 'dostawcze'}) }}" class="btn btn-white filter">Dostawcze</a>
+                        </div>
+                    </div>
+				 
+                </div>
+			
+               
+
+                <div class="row">
+				 <div id="ulSorList">
+
+				
+				{% for c in car %}  
+				
+				
+                    <div class="col-md-3">
+					
+                        <div class="wp-block white">
+                            <div class="figure">
+                                <a href="{{ path('car_homepage', {'id': c.id}) }}">
+								
+                                    <img alt="{{ c.name }}" src="{{ c.image }}"  width="200px" height="280px" class="img-center">
+                                </a>
+                            </div>
+                            <div class="wp-block-body">
+                                <h2 class="title"><a href="{{ path('car_homepage', {'id': c.id}) }}">{{ c.name }}</a></h2>
+								
+                                <h4 class="subtitle">{{c.description[0:60]}}...</h4>
+                            </div>                            
+                        </div>
+					
+                    </div>
+				
+				{% endfor %}
+					
+                   
+				 </div>
+                </div>
+            </div>
+        </div>
+    </section>
+	
+	
+	
 
 {% endblock %}
