@@ -1,0 +1,6 @@
+services:
+#    demo.example:
+#        class: Projekt\WypozyczalniaSamochodow\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+  

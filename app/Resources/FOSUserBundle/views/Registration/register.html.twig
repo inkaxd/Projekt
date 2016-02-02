@@ -1,0 +1,110 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %}Zarejestruj się{% endblock %}
+
+{% block way %}
+
+  <div class="pg-opt">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Rejestracja</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<section class="slice slice-lg bg-image">
+<div class="wp-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="wp-block default user-form no-margin"> 
+                            
+
+
+							
+                                                            
+                                               
+                                       
+							
+<div class="form-body">		
+
+
+
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="sky-form">
+<fieldset>   
+    <div class="form-group" id="fos_user_registration_form">
+<section>	
+<div class="form-group">
+		{{ form_label(form.username, "Nazwa użytkownika", { 'attr': {'class': 'label'} }) }}
+        {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_errors(form.username) }}
+</div>
+</section>
+
+<section>	
+<div class="form-group">
+		{{ form_label(form.email, "E-mail", { 'attr': {'class': 'label'} }) }}	
+		{{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_errors(form.email) }}
+</div>
+</section>
+
+<section>	
+<div class="form-group">
+		{{ form_label(form.plainPassword.first, "Hasło", { 'attr': {'class': 'label'} }) }}	
+        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+        {{ form_errors(form.plainPassword.first) }}
+</div>
+</section>
+
+<section>	
+<div class="form-group">
+		{{ form_label(form.plainPassword.second, "Powtórz hasło", { 'attr': {'class': 'label'} }) }}	
+        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control'}}) }}
+        {{ form_errors(form.plainPassword.second) }}
+</div>
+</section>
+        {{ form_rest(form) }}
+
+    
+	
+	<section>
+	<div class="form-group">
+        <button class="btn btn-base btn-icon btn-icon-right btn-sign-in pull-right" type="submit" id="_submit" name="_submit">
+        <span>Zarejestruj się</span>
+        </button>
+	</div>
+    </section>
+	
+	
+	
+
+</fieldset>      
+</form>
+
+</div>
+
+
+
+
+
+					
+
+
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+{% endblock %}

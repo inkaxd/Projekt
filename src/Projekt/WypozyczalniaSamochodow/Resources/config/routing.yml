@@ -1,0 +1,16 @@
+demo_homepage:
+    path:     /
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:index }
+
+car_homepage:
+    path:     /car/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:car }
+
+allCars_homepage:
+    path:     /allCars
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:allCars }
+	
+history_homepage:
+    path:     /history
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:history }
+
