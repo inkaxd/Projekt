@@ -117,7 +117,28 @@ class DefaultController extends Controller
 			'cars' => $cars,
 		));
     }
+	/**
+     * @Route("/history", name="history")
+     * @Template()
+     */
+    public function historyAction()
+    {
 	
+		$user = $this->getUser();
+			if (!is_object($user) || !$user instanceof UserInterface) {
+				throw new AccessDeniedException('Zaloguj się!');
+			}
+		
+		
+		$history = $this->getDoctrine() 
+        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Cart')
+        ->findBy(array('userID' => $user->getId(), 'OK' => 1));
+	
+	
+        return $this->render('ProjektWypozyczalniaSamochodow:Default:history.html.twig', array(
+			'history' => $history,
+		));
+    }
 	
 	
 }
