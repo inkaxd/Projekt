@@ -14,3 +14,18 @@ use Projekt\WypozyczalniaSamochodow\Entity\Review;
 use Projekt\WypozyczalniaSamochodow\Form\ReviewType;
 
 }
+class ReviewController extends Controller {
+
+	 /**
+     * @Route("/add/{$id}")
+     * 
+     * @Template
+     */
+    public function addReviewAction($id, Request $Request){
+ 
+        $Review = new Review();
+ 
+        $form = $this->createForm(new ReviewType(), $Review);
+		
+		 $form->handleRequest($Request);
+        if($form->isValid())
