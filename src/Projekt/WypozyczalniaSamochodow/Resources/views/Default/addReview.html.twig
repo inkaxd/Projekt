@@ -3,6 +3,62 @@
 
 {% block title %}Napisz recenzje{% endblock %}
 
+
+
+{#
+<form name="review" method="post" action="">
+    <div id="review">
+        <div>
+            <label for="review_title" class="required">Tytuł</label>
+            <input type="text" id="review_title" name="review[title]" required="required" />
+        </div>
+        <div>
+            <label for="review_description" class="required">Recenzja</label>
+            <input type="text" id="review_description" name="review[description]" required="required" />
+        </div>
+        <div>
+            <button type="submit" id="review_save" name="review[save]">Zapisz recencję</button>
+        </div>
+        <input type="hidden" id="review__token" name="review[_token]" value="xZNPughjDRkQ6Kiz7Wf7YyF8DkOXNykb0LDXWMU66xw" />
+    </div>
+</form>
+
+
+{{ form(form) }}
+
+
+<section>
+	<label for="file" class="input">
+		<input type="text" id="review_title" name="review[title]" required="required" placeholder="Tytuł" />
+	</label>
+</section>
+
+ <section>
+	<label for="file" class="input">
+		{{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł'}}) }}
+	</label>
+</section>
+
+
+<section>
+	<label class="textarea">
+		<textarea id="review_description" name="review[description]" required="required" placeholder="Treść recenzji"></textarea>
+	</label>										 
+</section>
+
+<section>
+	<label for="file" class="input">
+		<input type="text" name="address" placeholder="Address">
+	</label>
+</section>
+                                        
+<section>
+    <label class="textarea">
+        <textarea rows="3" name="info" placeholder="Additional info"></textarea>
+    </label>
+</section>
+
+#}
 {% block way %} 
        <div class="pg-opt">
         <div class="container">
@@ -14,8 +70,26 @@
         </div>
     </div>
 {% endblock %}
-		
+	
+	
+	
+	
 {% block content %}
+
+
+
+
+{#
+
+
+{{ form_start(form) }}
+{{ form_errors(form) }}	
+{{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł'}}) }}
+{{ form_widget(form.description, { 'attr': {'placeholder': 'Treść recenzji'} }) }}
+{{ form_end(form) }}
+
+#}
+
 
 <section class="slice bg-white">
         <div class="wp-section">
@@ -27,17 +101,19 @@
                                 <h2>Napisz recenzję do samochodu <strong>{{ car.name }}</strong></h2>
                             </div>
                             <div class="form-body">
+                            {#   <form action="" id="frmRegister" class="sky-form"> #} 
 							{{ form_start(form , { 'attr': {'class': 'sky-form'} }) }}
                                     <fieldset>
                                         <section>
                                             <label for="file" class="input">
-             
+                                        {#       <input type="text" name="address" placeholder="Address"> #} 
 										{{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł'}}) }}
                                             </label>
                                         </section>
                                         
                                         <section>
                                             <label class="textarea">
+                                        {#        <textarea rows="15" name="info" placeholder="Additional info"></textarea> #} 
 										{{ form_widget(form.description, { 'attr': {'placeholder': 'Treść recenzji', 'rows': '15'} }) }}
                                             </label>
                                         </section>
@@ -46,13 +122,14 @@
                                                 <div class="col-md-8">
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <button class="btn btn-base" >
+                                                    <button class="btn btn-alt btn-icon btn-icon-right btn-icon-go pull-right" type="submit">
                                                         <span>Zapisz</span>
                                                     </button>
                                                 </div>
                                         </section>
                                     </fieldset>
-								{{ form_end(form) }}   
+								{{ form_end(form) }}
+                         {#     </form>  #}   
                             </div>
                         </div>
                     </div>
@@ -60,6 +137,7 @@
             </div>
         </div>
     </section>
+
 
 {% if is_granted("ROLE") %}
     Hi {{ app.user.username }}
