@@ -9,7 +9,27 @@
 
 {% block way %}
 
-
+<div class="row">
+<div class="col-md-4">
+{% for flashMessage in app.session.flashbag.get('notice') %}
+      {{ flashMessage | raw}}
+{% endfor %}
+</div>
+</div>
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-6">
+        <h2>
+          Historia zamówień
+        </h2>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+</div>
 
 {% endblock %}
 
@@ -18,6 +38,48 @@
 
 {% block content %}
 
+<section class="slice bg-white bb">
+        <div class="wp-section shop">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11">
+					
+                        <!-- history table -->
+                        <table class="table table-cart table-responsive">
+                            <tbody>
+							{% if history is empty %}
+							<h2>
+							Brak history zamówień
+							</h2>
+						{% endif %}
+							
+							
+							 {% for c in history %}   
+                                <tr>                               
+                                    <td>{{ c.name }}</td>
+									<td>{{ c.param1 }}</td>
+									<td>{{ c.param2 }}</td>
+									<td>{{ c.param3 }}</td>
+									<td>{{ c.param4 }}</td>
+									<td>{{ c.param5 }}</td>
+									<td>Cena: {{ c.price }}</td> 									
+                                    <td class="remove-cell"><a href="{{ path('add_homepage', {id: c.carID}) }}" class="cart-remove">Napisz recenzję</i></a></td>
+                                </tr>
+								
+							 {% endfor %}
+                            </tbody>
+                        </table>
+						
+                    </div>
 
+					
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+	
+	
 
 {% endblock %}
