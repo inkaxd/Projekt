@@ -1,90 +1,3 @@
-<<<<<<< HEAD
-{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
-
-
-{% block title %} Historia zamówieñ {% endblock %}
-
-
-
-
-
-{% block way %}
-
-<div class="row">
-<div class="col-md-4">
-
-</div>
-</div>
-<!-- MAIN CONTENT -->
-<div class="pg-opt">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        
-      </div>
-      <div class="col-md-6">
-      </div>
-    </div>
-  </div>
-</div>
-
-{% endblock %}
-
-
-
-
-{% block content %}
-
-<section class="slice bg-white bb">
-        <div class="wp-section shop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11">
-					{% if history is not empty %}	
-                     <div class="well">
-							  <h4>Historia zamówieñ</h4>
-                      </div>
-					{% endif %}
-					
-                        <!-- history table -->
-                        <table class="table table-cart table-responsive">
-                            <tbody>
-							{% if history is empty %}
-							<h2>
-							Brak history zamówieñ
-							</h2>
-						{% endif %}
-							
-							
-							 {% for c in history %}   
-                                <tr>                               
-                                    <td>{{ c.name }}</td>
-									<td>{{ c.param1 }}</td>
-									<td>{{ c.param2 }}</td>
-									<td>{{ c.param3 }}</td>
-									<td>{{ c.param4 }}</td>
-									<td>{{ c.param5 }}</td>
-									<td>Cena: {{ c.price }}</td> 									
-                
-                                </tr>
-								
-							 {% endfor %}
-                            </tbody>
-                        </table>
-						
-                    </div>
-
-					
-                </div>
-            </div>
-        </div>
-    </section>
-
-	
-	
-	
-{% endblock %}
-=======
 {% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
 
 
@@ -96,78 +9,15 @@
 
 {% block way %}
 
-<div class="row">
-<div class="col-md-4">
-{% for flashMessage in app.session.flashbag.get('notice') %}
-      {{ flashMessage | raw}}
-{% endfor %}
-</div>
-</div>
-<!-- MAIN CONTENT -->
-<div class="pg-opt">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        
-      </div>
-      <div class="col-md-6">
-      </div>
-    </div>
-  </div>
-</div>
+
 
 {% endblock %}
+
+
+
 
 {% block content %}
 
-<section class="slice bg-white bb">
-        <div class="wp-section shop">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11">
-					{% if history is not empty %}	
-                     <div class="well">
-							  <h4>Historia zamÃ³wieÅ„</h4>
-                      </div>
-					{% endif %}
-					
-                        <!-- history table -->
-                        <table class="table table-cart table-responsive">
-                            <tbody>
-							{% if history is empty %}
-							<h2>
-							Brak history zamÃ³wieÅ„
-							</h2>
-						{% endif %}
-							
-							
-							 {% for c in history %}   
-                                <tr>                               
-                                    <td>{{ c.name }}</td>
-									<td>{{ c.param1 }}</td>
-									<td>{{ c.param2 }}</td>
-									<td>{{ c.param3 }}</td>
-									<td>{{ c.param4 }}</td>
-									<td>{{ c.param5 }}</td>
-									<td>Cena: {{ c.price }}</td> 									
-                                    <td class="remove-cell"><a href="{{ path('add_homepage', {id: c.carID}) }}" class="cart-remove">Napisz recenzjÄ™</i></a></td>
-                                </tr>
-								
-							 {% endfor %}
-                            </tbody>
-                        </table>
-						
-                    </div>
-
-					
-                </div>
-            </div>
-        </div>
-    </section>
-
-
 
 
 {% endblock %}
-
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
