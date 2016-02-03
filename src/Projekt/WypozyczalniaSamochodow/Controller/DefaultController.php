@@ -38,17 +38,10 @@ class DefaultController extends Controller
 			array(),
 			array('loan' => 'DESC')	
 	);
-	
-	$review = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Review')
-		->findBy(
-		array('active' => 1)
-		);
 		
         return $this->render('ProjektWypozyczalniaSamochodow:Default:index.html.twig', array(
 		'news' => $news,
 		'loan' => $loan,
-		'review' => $review,
 		));
     }
 	
@@ -79,20 +72,12 @@ class DefaultController extends Controller
      */
 	public function carAction($id, Request $Request)
 	{
-		
-	
 	$car = $this->getDoctrine() 
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
         ->findOneById($id);
-		
-	$review = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Review')
-        ->findBy(array('carID' => $id));
 	
 	return $this->render('ProjektWypozyczalniaSamochodow:Default:Car.html.twig', array(
 	'car' => $car,
-	'review' => $review,
-	//'form' => $form->createView(),
 		));
 	}
 	
@@ -207,7 +192,6 @@ class DefaultController extends Controller
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
         ->findAll();
 	
-	
         return $this->render('ProjektWypozyczalniaSamochodow:Default:allCars.html.twig', array(
 			'cars' => $cars,
 		));
@@ -256,7 +240,6 @@ class DefaultController extends Controller
 		$hajs = $hajs + ($c->getParam5() * 100);
 		
 	}
-	
 	
 	$cars = array();
 	
