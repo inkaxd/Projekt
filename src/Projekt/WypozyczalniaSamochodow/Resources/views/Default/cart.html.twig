@@ -1,11 +1,6 @@
 {% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
 
-
 {% block title %}Koszyk {% endblock %}
-
-
-
-
 
 {% block way %}
 
@@ -39,13 +34,7 @@
         <div class="wp-section shop">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-11">
-					{% if cart is not empty %}	
-                     <div class="well">
-							  <h4>Samochody do wypożyczenia</h4>
-                      </div>
-					{% endif %}
-					
+                    <div class="col-md-11">				
                         <!-- Cart table -->
                         <table class="table table-cart table-responsive">
 						
@@ -58,15 +47,10 @@
 									<th>Odbiór samochodu z innego miesjca</th>
 									<th>Ilość kierowców</th>
 									<th>Cena</th> 									
-                                    <td class="remove-cell">Akcja</td>
                                 </tr>
-						</thead>
-						
-						
+						</thead>						
                             <tbody>
-							
-			
-							
+		
 							 {% for c in cart %}   
                                 <tr>                               
                                     <td>{{ c.name }}</td>
@@ -76,30 +60,18 @@
 									<td>{{ c.param4 }}</td>
 									<td>{{ c.param5 }}</td>
 									<td>{{ c.price }} PLN</td> 									
-                                    <td class="remove-cell"><a href="{{ path('cart_remove', {id: c.id}) }}" class="cart-remove" title="Remove item"><i class="fa fa-times-circle fa-2x"></i></a></td>
                                 </tr>
 								
 							 {% endfor %}
                             </tbody>
                         </table>
-						{% set price = 0 %}
-						
-						
-						{% if cart is not empty %}	
-						{% for c in cart %} 
-						
-						{% set price = price + c.price | number_format %}
-						
-						{% endfor %}
-						
-						<p>Do zapłaty: {{ price }}</p>
-                       <p><a href="{{ path('pay_homepage') }}" class="btn btn-success">Zapłać</a></p>
-						{% endif %}
-						
-						
-                    </div>
 
-					
+						{% if cart is not empty %}	
+						<p>Do zapłaty: {{ hajs }}</p>
+                       <p><a href="{{ path('pay_homepage') }}" class="btn btn-success">Zapłać</a></p>
+						{% endif %}	
+						
+                    </div>			
                 </div>
             </div>
         </div>
@@ -109,5 +81,3 @@
 
 
 {% endblock %}
-
-
