@@ -8,24 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-<<<<<<< HEAD
-=======
 use FOS\UserBundle\Model\UserInterface;
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-<<<<<<< HEAD
-use Projekt\WypozyczalniaSamochodow\Entity\Car;
-
-=======
 use Projekt\WypozyczalniaSamochodow\Entity\Cart;
 use Projekt\WypozyczalniaSamochodow\Entity\Car;
 
 use Projekt\WypozyczalniaSamochodow\Form\CartType;
 use Projekt\WypozyczalniaSamochodow\Form\ConfType;
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
 
 class DefaultController extends Controller
 {
@@ -47,8 +39,6 @@ class DefaultController extends Controller
 			array('loan' => 'DESC')	
 	);
 	
-<<<<<<< HEAD
-=======
 	$review = $this->getDoctrine() 
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Review')
 		->findBy(
@@ -60,13 +50,10 @@ class DefaultController extends Controller
 		'loan' => $loan,
 		'review' => $review,
 		));
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
     }
 	
 	
 	/**
-<<<<<<< HEAD
-=======
      * @Route("/genre/{$genre}", name="contact")
      * @Template()
      */
@@ -85,47 +72,7 @@ class DefaultController extends Controller
 			'car' => $car,
 		));
     }
-	
-	/**
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
-     * @Route("/show/{$id}", name="show")
-     * @Template()
-     */
-    public function showAction($id)
-    {
 		
-		$carID = $id;
-		$userID = $this->getUser()->getId();
-		$tab = array ();
-	
-		 $film = $this->getDoctrine() 
-			->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Order')
-			->findBy(
-			array('carID' => $carID, 'userID' => $userID)
-			);
-			
-		if (!$film) {
-			return $this->redirect($this->generateUrl('demo_homepage'));
-		}
-			
-		
-		 $car = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
-        ->find($id);
-			
-		if (!$car) {
-			 throw $this->createNotFoundException('No product found for id '.$id);
-		}
-	
-	
-        return $this->render('ProjektWypozyczalniaSamochodow:Default:show.html.twig', array(
-			'car' => $car,
-			'carID' => $carID,
-		));
-    }
-	
-	
-	
 	/**
      * @Route("/car/{$id}", name="_car")
      * @Template()
@@ -148,41 +95,6 @@ class DefaultController extends Controller
 	//'form' => $form->createView(),
 		));
 	}
-<<<<<<< HEAD
-
-=======
-	
-	
-	/**
-     * @Route("/contact", name="contact")
-     * @Template()
-     */
-    public function contactAction()
-    {
-        
-		return array();
-    }
-	
-	
-	/**
-     * @Route("/addToCart", name="addToCart")
-     * @Template()
-     */
-    public function addToCartAction($id, Request $Request)
-    {
-        
-		$car = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
-        ->find($id);
-		
-		
-		$cart = new Cart();
-		
-		$cart -> setUserID();
-		$cart -> setCarID($car->getId());
-		
-		return array();
-    }
 	
 	/**
      * @Route("/configuration/{id}", name="configuration")
@@ -190,18 +102,20 @@ class DefaultController extends Controller
      */
     public function configurationAction($id, Request $Request)
     {
-        
+        //wyciągnięcie danych użytkownka
 		$user = $this->getUser();
 			if (!is_object($user) || !$user instanceof UserInterface) {
 				throw new AccessDeniedException('Zaloguj się!');
 			}
 		
+		
+		//wyciagniecie samochodi po ID
 		$car = $this->getDoctrine() 
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
         ->findOneById($id);
 		
 	
-		
+		//tworzenie formularza
 		$C = new Cart();
         $form = $this->createForm(new ConfType(), $C);
 		
@@ -216,44 +130,16 @@ class DefaultController extends Controller
 			
 			$em = $this->getDoctrine()->getManager();
 			$em->persist($C);
-			$em->flush();
-			
-			
-			
-			$Request->getSession()->getFlashBag()->add('notice', '<div class="alert alert-success" role="alert"><strong>Świetnie</strong> Produkt dodany do koszyka</div>');			
+			$em->flush();			
 			
 			return $this->redirect($this->generateUrl('cart_homepage'));
 		}
-		
 		
 		return $this->render('ProjektWypozyczalniaSamochodow:Default:configuration.html.twig', array(
 			'car' => $car,
 			'form' => $form->createView(),
 		));
     }
-	
-	
-	/**
-     * @Route("/remove/{id}", name="remove")
-     * @Template()
-     */
-    public function removeAction($id, Request $Request)
-    {
-		$item = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Cart')
-        ->findOneById($id);
-		
-		$em = $this->getDoctrine()->getManager();
-		$em->remove($item);
-		$em->flush();  
-		
-		$Request->getSession()->getFlashBag()->add('notice', '<div class="alert alert-success" role="alert"><strong>Udało się!</strong> Samochód została usunięta.</div>');
-	
-	
-        return $this->redirect($this->generateUrl('cart_homepage'));
-    }
-	
-	
 	
 	/**
      * @Route("/pay", name="pay")
@@ -273,6 +159,7 @@ class DefaultController extends Controller
 		
 		$em = $this->getDoctrine()->getManager();
 		
+		//zmienianie OK na 1 tzn ze jest zapłacony
 		foreach ($items as $item) {
 			$item->setOK(1);
 			
@@ -281,9 +168,6 @@ class DefaultController extends Controller
 			
 		}
 		
-		$Request->getSession()->getFlashBag()->add('notice', '<div class="alert alert-success" role="alert"><strong>Good Job!</strong> Hajs się zgadza!.</div>');
-	
-	
         return $this->redirect($this->generateUrl('history_homepage'));
     }
 	
@@ -298,8 +182,8 @@ class DefaultController extends Controller
 			if (!is_object($user) || !$user instanceof UserInterface) {
 				throw new AccessDeniedException('Zaloguj się!');
 			}
-		
-		
+			
+		//wyciąganie zapłaconych samochodów
 		$history = $this->getDoctrine() 
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Cart')
         ->findBy(array('userID' => $user->getId(), 'OK' => 1));
@@ -311,7 +195,6 @@ class DefaultController extends Controller
     }
 	
 	
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
 	
 	/**
      * @Route("/allCars", name="allCars")
@@ -331,16 +214,15 @@ class DefaultController extends Controller
     }
 	
 	
-<<<<<<< HEAD
-=======
 	/**
      * @Route("/cart", name="cart")
      * @Template()
+	 Liczenie pieniążków
      */
+	 
     public function cartAction(Request $request)
     {
-	//trzeba tu napisać odczyt z ciasteczka
-	
+		
 	$user = $this->getUser();
 			if (!is_object($user) || !$user instanceof UserInterface) {
 				throw new AccessDeniedException('Zaloguj się!');
@@ -350,6 +232,30 @@ class DefaultController extends Controller
 	$cart = $this->getDoctrine() 
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Cart')
         ->findBy(array('userID' => $user->getId(), 'OK' => 0));
+		
+		
+		$hajs = 0;
+		
+	foreach ($cart as $c) {
+	
+		$data1 = strtotime($c->getParam1());
+		$data2 = strtotime($c->getParam2());
+		
+		$s = $data2 - $data1; //ilość sekund
+		$dni = (($s/60)/60)/24;
+		$hajs = $hajs + ($dni * $c->getPrice());
+		
+			if ($c->getParam3() == 'TAK'){
+				$hajs = $hajs + 50;
+			}
+			
+			if ($c->getParam4() == 'TAK'){
+				$hajs = $hajs + 60;
+			}
+			
+		$hajs = $hajs + ($c->getParam5() * 100);
+		
+	}
 	
 	
 	$cars = array();
@@ -359,17 +265,13 @@ class DefaultController extends Controller
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
         ->findOneById($c->getCarID());
 	}
-	
-	
         return $this->render('ProjektWypozyczalniaSamochodow:Default:cart.html.twig', array(
 		'cart' => $cart,
 		'cars' => $cars,
-		//'cost' => $cost,
-		//'ID' => $ID,
+		'hajs' => $hajs,
 		));
 		
 		
     }
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
 	
 }
