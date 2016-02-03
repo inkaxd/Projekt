@@ -8,24 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-<<<<<<< HEAD
-=======
 use FOS\UserBundle\Model\UserInterface;
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-<<<<<<< HEAD
-use Projekt\WypozyczalniaSamochodow\Entity\Car;
-
-=======
 use Projekt\WypozyczalniaSamochodow\Entity\Cart;
 use Projekt\WypozyczalniaSamochodow\Entity\Car;
 
 use Projekt\WypozyczalniaSamochodow\Form\CartType;
-use Projekt\WypozyczalniaSamochodow\Form\ConfType;
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
 
 class DefaultController extends Controller
 {
@@ -47,8 +38,6 @@ class DefaultController extends Controller
 			array('loan' => 'DESC')	
 	);
 	
-<<<<<<< HEAD
-=======
 	$review = $this->getDoctrine() 
         ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Review')
 		->findBy(
@@ -60,13 +49,10 @@ class DefaultController extends Controller
 		'loan' => $loan,
 		'review' => $review,
 		));
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
     }
 	
 	
 	/**
-<<<<<<< HEAD
-=======
      * @Route("/genre/{$genre}", name="contact")
      * @Template()
      */
@@ -87,7 +73,6 @@ class DefaultController extends Controller
     }
 	
 	/**
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
      * @Route("/show/{$id}", name="show")
      * @Template()
      */
@@ -148,37 +133,6 @@ class DefaultController extends Controller
 	//'form' => $form->createView(),
 		));
 	}
-<<<<<<< HEAD
-
-	
-	/**
-     * @Route("/allCars", name="allCars")
-     * @Template()
-     */
-    public function allCarsAction()
-    {
-	
-		 $cars = $this->getDoctrine()
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
-        ->findAll();
-	
-	
-        return $this->render('ProjektWypozyczalniaSamochodow:Default:allCars.html.twig', array(
-			'cars' => $cars,
-		));
-    }
-=======
-	
-	
-	/**
-     * @Route("/contact", name="contact")
-     * @Template()
-     */
-    public function contactAction()
-    {
-        
-		return array();
-    }
 	
 	
 	/**
@@ -200,115 +154,7 @@ class DefaultController extends Controller
 		
 		return array();
     }
-	
-	/**
-     * @Route("/configuration/{id}", name="configuration")
-     * @Template()
-     */
-    public function configurationAction($id, Request $Request)
-    {
-        
-		$user = $this->getUser();
-			if (!is_object($user) || !$user instanceof UserInterface) {
-				throw new AccessDeniedException('Zaloguj się!');
-			}
-		
-		$car = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Car')
-        ->findOneById($id);
-		
-	
-		
-		$C = new Cart();
-        $form = $this->createForm(new ConfType(), $C);
-		
-		$form->handleRequest($Request);
-        if ($form->isValid()) {
-				
-			$C -> setCarID($car->getId());
-			$C -> setName($car->getName());
-			$C -> setUserID($user->getId());
-			$C -> setPrice($car->getPrice());
-			$C -> setOK(0);
-			
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($C);
-			$em->flush();
-			
-			
-			
-			$Request->getSession()->getFlashBag()->add('notice', '<div class="alert alert-success" role="alert"><strong>Świetnie</strong> Produkt dodany do koszyka</div>');			
-			
-			return $this->redirect($this->generateUrl('cart_homepage'));
-		}
-		
-		
-		return $this->render('ProjektWypozyczalniaSamochodow:Default:configuration.html.twig', array(
-			'car' => $car,
-			'form' => $form->createView(),
-		));
-    }
-	
-	
-	/**
-     * @Route("/remove/{id}", name="remove")
-     * @Template()
-     */
-    public function removeAction($id, Request $Request)
-    {
-		$item = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Cart')
-        ->findOneById($id);
-		
-		$em = $this->getDoctrine()->getManager();
-		$em->remove($item);
-		$em->flush();  
-		
-		$Request->getSession()->getFlashBag()->add('notice', '<div class="alert alert-success" role="alert"><strong>Udało się!</strong> Samochód została usunięta.</div>');
-	
-	
-        return $this->redirect($this->generateUrl('cart_homepage'));
-    }
-	
-	
-	
-	/**
-     * @Route("/pay", name="pay")
-     * @Template()
-     */
-    public function payAction(Request $Request)
-    {
-		$user = $this->getUser();
-			if (!is_object($user) || !$user instanceof UserInterface) {
-				throw new AccessDeniedException('Zaloguj się!');
-			}
-			
-		$items = $this->getDoctrine() 
-        ->getRepository('Projekt\WypozyczalniaSamochodow\Entity\Cart')
-        ->findByUserID($user->getId());	
-		
-		
-		$em = $this->getDoctrine()->getManager();
-		
-		foreach ($items as $item) {
-			$item->setOK(1);
-			
-			$em->persist($item);
-			$em->flush();	
-			
-		}
-		
-		$Request->getSession()->getFlashBag()->add('notice', '<div class="alert alert-success" role="alert"><strong>Good Job!</strong> Hajs się zgadza!.</div>');
-	
-	
-        return $this->redirect($this->generateUrl('history_homepage'));
-    }
-	
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
-	/**
-     * @Route("/history", name="history")
-     * @Template()
-     */
+
     public function historyAction()
     {
 	
@@ -329,8 +175,6 @@ class DefaultController extends Controller
     }
 	
 	
-<<<<<<< HEAD
-=======
 	
 	/**
      * @Route("/allCars", name="allCars")
@@ -388,5 +232,4 @@ class DefaultController extends Controller
 		
     }
 	
->>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
 }

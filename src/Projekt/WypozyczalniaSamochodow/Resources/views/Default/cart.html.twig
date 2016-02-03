@@ -1,0 +1,113 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+
+
+{% block title %}Koszyk {% endblock %}
+
+
+
+
+
+{% block way %}
+
+<div class="row">
+<div class="col-md-4">
+{% for flashMessage in app.session.flashbag.get('notice') %}
+      {{ flashMessage | raw}}
+{% endfor %}
+</div>
+</div>
+<!-- MAIN CONTENT -->
+<div class="pg-opt">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>
+          Koszyk
+        </h2>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<section class="slice bg-white bb">
+        <div class="wp-section shop">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11">
+					{% if cart is not empty %}	
+                     <div class="well">
+							  <h4>Samochody do wypożyczenia</h4>
+                      </div>
+					{% endif %}
+					
+                        <!-- Cart table -->
+                        <table class="table table-cart table-responsive">
+						
+						<thead>
+							<tr>                               
+                                    <th>Nazwa</td>
+									<th>Termin odbioru</th>
+									<th>Termin zwrotu</th>
+									<th>Ubezpieczenie</th>
+									<th>Odbiór samochodu z innego miesjca</th>
+									<th>Ilość kierowców</th>
+									<th>Cena</th> 									
+                                    <td class="remove-cell">Akcja</td>
+                                </tr>
+						</thead>
+						
+						
+                            <tbody>
+							
+			
+							
+							 {% for c in cart %}   
+                                <tr>                               
+                                    <td>{{ c.name }}</td>
+									<td>{{ c.param1 }}</td>
+									<td>{{ c.param2 }}</td>
+									<td>{{ c.param3 }}</td>
+									<td>{{ c.param4 }}</td>
+									<td>{{ c.param5 }}</td>
+									<td>{{ c.price }} PLN</td> 									
+                                    <td class="remove-cell"><a href="{{ path('cart_remove', {id: c.id}) }}" class="cart-remove" title="Remove item"><i class="fa fa-times-circle fa-2x"></i></a></td>
+                                </tr>
+								
+							 {% endfor %}
+                            </tbody>
+                        </table>
+						{% set price = 0 %}
+						
+						
+						{% if cart is not empty %}	
+						{% for c in cart %} 
+						
+						{% set price = price + c.price | number_format %}
+						
+						{% endfor %}
+						
+						<p>Do zapłaty: {{ price }}</p>
+                       <p><a href="{{ path('pay_homepage') }}" class="btn btn-success">Zapłać</a></p>
+						{% endif %}
+						
+						
+                    </div>
+
+					
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
+
+

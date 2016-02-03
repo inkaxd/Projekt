@@ -16,4 +16,16 @@ history_homepage:
 
 genre_homepage:
     path:     /genre/{genre}
+<<<<<<< HEAD
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:genre }
+=======
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:genre }
+
+add_homepage:
+    path:     /add/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Review:addReview }
+
+cart_homepage:
+    path:     /cart
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:cart }
+>>>>>>> 39e441e672222bb3648d38fb3d88e129f063d961
