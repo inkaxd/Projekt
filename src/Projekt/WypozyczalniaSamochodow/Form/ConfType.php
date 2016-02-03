@@ -14,12 +14,10 @@ class ConfType extends AbstractType{
 
    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder		
-                ->add('data1', 'text', array(
-				'mapped' => false,
+                ->add('param1', 'text', array(
 				'label' => 'Termin odbioru',))
 		
-				->add('data2', 'text', array(
-				'mapped' => false,
+				->add('param2', 'text', array(
 				'label' => 'Termin zwrotu',))
 						
 				->add('param3', 'choice', array(                   

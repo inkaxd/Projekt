@@ -15,40 +15,23 @@
         </div>
     </div>
 
-
 {% if error %}
       <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
-
-
 
 <section class="slice slice-lg bg-image">
 <div class="wp-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="wp-block default user-form no-margin">
-
-
-							
-                                                            
-                                               
-                                       
-							
+                        <div class="wp-block default user-form no-margin">							
 <div class="form-body">							
-							
-							
-							
+																			
 <form action="{{ path("fos_user_security_check") }}" method="post"  id="frmLogin" class="sky-form">
  <fieldset>      
 
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-	
-	
-										
-	
-	
-	
+		
 <section>
 <div class="form-group">
     <label class="label" for="username">Email</label>
@@ -59,7 +42,6 @@
 </div>	
 </section>
 	
-	
 <section>	
 <div class="form-group">	
     <label class="label" for="password">Hasło</label>
@@ -69,22 +51,12 @@
 	</label>
 </div>  	
 </section>	
-	
 
-										
-	
-	
-
-										<section>
-                                            <button class="btn btn-base btn-icon btn-icon-right btn-sign-in pull-right" type="submit" id="_submit" name="_submit">
-                                                <span>Zaloguj</span>
-                                            </button>
-                                        </section>
-
-
-	
-
-    
+<section>
+         <button class="btn btn-base btn-icon btn-icon-right btn-sign-in pull-right" type="submit" id="_submit" name="_submit">
+           <span>Zaloguj</span>
+          </button>
+         </section>
 
 </fieldset>      
 </form>

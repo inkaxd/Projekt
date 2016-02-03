@@ -6,25 +6,9 @@ car_homepage:
     path:     /car/{id}
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:car }
 
-show_homepage:
-    path:     /show/{id}
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:show }
-
-contact_homepage:
-    path:     /contact
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:contact }
-
 allCars_homepage:
     path:     /allCars
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:allCars }
-
-order_homepage:
-    path:     /order
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:order}
-
-sum_homepage:
-    path:     /sum
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:sum }
 
 cart_homepage:
     path:     /cart
@@ -37,10 +21,6 @@ history_homepage:
 pay_homepage:
     path:     /pay
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:pay }
-
-cart_remove:
-    path:     /remove/{id}
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:remove }
 
 configuration_homepage:
     path:     /configuration/{id}

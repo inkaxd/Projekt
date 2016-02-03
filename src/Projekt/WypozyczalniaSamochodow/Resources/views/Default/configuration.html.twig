@@ -29,21 +29,19 @@
 {% endblock %}
 
 {% block description %}
-<h2>Konfiguracja samochodu <strong>{{ car.name }}</strong></h2>
 
 <div class="form-group col-md-4 col-md-offset-4">
 {{ form_start(form) }}
 {{ form_errors(form) }}
 
 
-
-{{ form_label(form.data1) }}
-{{ form_widget(form.data1, {'attr': {'class': 'form-control'}}) }}
-{{ form_errors(form.data1) }}
+{{ form_label(form.param1) }}
+{{ form_widget(form.param1, {'attr': {'class': 'datepicker form-control', 'id': 'data', 'data-provide': 'datepicker', 'data-date-format':'mm/dd/yyyy'}}) }}
+{{ form_errors(form.param1) }}
 <br>
-{{ form_label(form.data2) }}
-{{ form_widget(form.data2, {'attr': {'class': 'form-control'}}) }}
-{{ form_errors(form.data2) }}
+{{ form_label(form.param2) }}
+{{ form_widget(form.param2, {'attr': {'class': 'datepicker form-control', 'id': 'data', 'data-provide': 'datepicker', 'data-date-format':'mm/dd/yyyy'}}) }}
+{{ form_errors(form.param2) }}
 <br>
 {{ form_label(form.param3) }}
 {{ form_widget(form.param3, {'attr': {'class': 'form-control'}}) }}
@@ -63,10 +61,9 @@
 
 {{ form_rest(form) }}
 
-
 	<div class="form-group col-md-4 col-md-offset-4">
         <button class="btn btn-base btn-icon btn-icon-right btn-sign-in " type="submit" id="_submit" name="_submit">
-        <span>Biorę!</span>
+        <span>Biorę</span>
         </button>
 	</div>
 
@@ -74,5 +71,15 @@
 
 
 
+
+{% endblock %}
+
+
+{% block script %}
+
+$('#data').datepicker({
+    language: "pl",
+    orientation: "bottom auto"
+});
 
 {% endblock %}

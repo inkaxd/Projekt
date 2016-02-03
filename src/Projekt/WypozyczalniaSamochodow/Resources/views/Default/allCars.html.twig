@@ -29,27 +29,15 @@
 
         <div class="wp-section">
             <div class="container">
-	
-
-                <div class="row">
-				
-
-                  				 
+                <div class="row">    				 
                 </div>
-			
-               
-
                 <div class="row">
 {% for n in cars %}   
 								
                     <div class="col-md-3">
-					
-					
-						
                         <div class="wp-block white">
                             <div class="figure">
                                 <a href="{{ path('car_homepage', {'id': n.id}) }}">
-								
                                     <img alt="{{ n.name }}" src="{{ n.image }}"  width="290px" height="280px" class="img-center">
                                 </a>
                             </div>
@@ -57,11 +45,8 @@
                                 <h2 class="title"><a href="{{ path('car_homepage', {'id': n.id}) }}">{{ n.name }}</a></h2>
 								
                                 <h4 class="subtitle">{{n.description[0:60]}}...</h4>
-                            </div>   
-
-							
+                            </div>   	
                         </div>
-					
                     </div>
 				
 				{% endfor %}                </div>
@@ -69,8 +54,5 @@
         </div>
 
     </section>
-
-
-
 
 {% endblock %}

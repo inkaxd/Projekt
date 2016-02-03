@@ -14,15 +14,12 @@ class ReviewType extends AbstractType{
 
 	public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-				//->add('contact','text',array('mapped'=>false))
+
                 ->add('title', 'text', array(
                     'label' => 'Tytuł'
                 ))				
 				->add('description', 'textarea', array(
                     'label' => 'Recenzja'
-        //        ))
-       //         ->add('save', 'submit', array(
-         //           'label' => 'Zapisz recencję'
                 ));
     }
 	

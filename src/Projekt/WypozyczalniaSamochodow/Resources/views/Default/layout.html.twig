@@ -33,6 +33,7 @@
 		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/owl-carousel/owl.carousel.css'
 		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/owl-carousel/owl.theme.css' 
 		'@ProjektWypozyczalniaSamochodow/Resources/public/assets/sky-forms/css/sky-forms.css'
+		'@ProjektWypozyczalniaSamochodow/Resources/public/css/data.css'
 		filter='cssrewrite' %}
      <link rel="stylesheet" href="{{ asset_url }}" />
 	{% endstylesheets %}
@@ -185,7 +186,8 @@
 	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/owl-carousel/owl.carousel.js' 
 	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/bootstrap/js/tooltip.js' 
 	'@ProjektWypozyczalniaSamochodow/Resources/public/assets/bootstrap/js/popover.js' 
-	'@ProjektWypozyczalniaSamochodow/Resources/public/js/wp.app.js' 
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/wp.app.js'
+	'@ProjektWypozyczalniaSamochodow/Resources/public/js/data.js'
 	filter='cssrewrite' %}
 	 <script type="text/javascript" src="{{ asset_url }}"></script>
 	{% endjavascripts %}
@@ -211,6 +213,7 @@
 	
 	
 	
+	{% block script %} 	{% endblock %}
 	
 	
 	
