@@ -6,34 +6,30 @@ car_homepage:
     path:     /car/{id}
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:car }
 
-<<<<<<< HEAD
 allCars_homepage:
     path:     /allCars
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:allCars }
 
+cart_homepage:
+    path:     /cart
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:cart }
 
-
-=======
-<<<<<<< HEAD
-=======
-allCars_homepage:
-    path:     /allCars
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:allCars }
-	
 history_homepage:
     path:     /history
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:history }
 
-genre_homepage:
-    path:     /genre/{genre}
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:genre }
+pay_homepage:
+    path:     /pay
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:pay }
+
+configuration_homepage:
+    path:     /configuration/{id}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:configuration }
 
 add_homepage:
     path:     /add/{id}
     defaults: { _controller: ProjektWypozyczalniaSamochodow:Review:addReview }
 
-cart_homepage:
-    path:     /cart
-    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:cart }
->>>>>>> ff47c1f5356674ceef2667bd62a122ea3d2a18b0
->>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
+genre_homepage:
+    path:     /genre/{genre}
+    defaults: { _controller: ProjektWypozyczalniaSamochodow:Default:genre }
