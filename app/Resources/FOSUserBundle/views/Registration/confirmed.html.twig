@@ -2,6 +2,7 @@
 
 {% block title %}Potwierdzenie rejestracji{% endblock %}
 
+<<<<<<< HEAD
 
 {% block way %}
 
@@ -10,5 +11,10 @@
         {% set targetUrl = app.session.get('_security.target_path') %}
         {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
     {% endif %}
+=======
+{% block way %}
+
+    <p><h1>{{ 'Rejestracja przebiegła pomyślnie.'|trans({'%username%': user.username}, 'FOSUserBundle') }}</h1></p>
+>>>>>>> b3775c5ef1717cb6303bfe242eb9ee015fb36f62
 
 {% endblock %}

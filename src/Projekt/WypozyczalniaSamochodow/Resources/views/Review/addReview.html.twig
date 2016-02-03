@@ -1,0 +1,72 @@
+{% extends "ProjektWypozyczalniaSamochodow:Default:layout.html.twig" %}
+
+
+{% block title %}Napisz recenzje{% endblock %}
+
+{% block way %} 
+       <div class="pg-opt">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Dodaj recenzję</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+		
+{% block content %}
+
+<section class="slice bg-white">
+        <div class="wp-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3">                   
+                        <div class="wp-block default user-form no-margin">
+                            <div class="form-header">
+                                <h2>Napisz recenzję do samochodu <strong>{{ car.name }}</strong></h2>
+                            </div>
+                            <div class="form-body">
+							{{ form_start(form , { 'attr': {'class': 'sky-form'} }) }}
+                                    <fieldset>
+                                        <section>
+                                            <label for="file" class="input">
+             
+										{{ form_widget(form.title, {'attr': {'placeholder': 'Tytuł'}}) }}
+                                            </label>
+                                        </section>
+                                        
+                                        <section>
+                                            <label class="textarea">
+										{{ form_widget(form.description, { 'attr': {'placeholder': 'Treść recenzji', 'rows': '15'} }) }}
+                                            </label>
+                                        </section>
+                                        <section>
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <button class="btn btn-base" >
+                                                        <span>Zapisz</span>
+                                                    </button>
+                                                </div>
+                                        </section>
+                                    </fieldset>
+								{{ form_end(form) }}   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% if is_granted("ROLE") %}
+    Hi {{ app.user.username }}
+{% endif %}
+
+{% endblock %}
+
+{% block test %}
+{{ parent() }}
+{% endblock %}
