@@ -34,8 +34,6 @@ class ReviewController extends Controller {
 			$date = date("Y-m-d H:i:s");
 			$user = $this->get('security.token_storage')->getToken()->getUser();
 				
-			//movieID, title, user, description, date, active
-				
 			$Review->setTitle($title);
 			$Review->setDescription($description);
 			$Review->setCarID($id);

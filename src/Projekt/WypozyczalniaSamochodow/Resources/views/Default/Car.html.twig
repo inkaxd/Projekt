@@ -58,7 +58,7 @@
                     {{ car.price }} PLN/dzień
                   </span>
                 </div>       
-                <a href="{{ path('configuration_homepage', {id: car.id}) }}" class="btn btn-base">
+                <a href="{{ path('configuration_homepage', {id: car.id}) }}" class="btn btn-base btn-icon btn-cart">
                   <span>
                     Wypożycz
                   </span>
@@ -67,7 +67,15 @@
                 <hr>
                 <div class="product-short-info">
                   <p>
-                    <i class="fa fa-check">
+                    <i class="fa fa-heart">
+                    </i>
+                    <strong>
+                      Dostępność
+                    </strong>
+                    : Dostępny
+                  </p>
+                  <p>
+                    <i class="fa fa-inbox">
                     </i>
                     <strong>
                       Kategoria
@@ -80,12 +88,25 @@
                     <strong>
                       Rok produkcji:
                     </strong>
-                     {{ car.year }} 
+                    : {{ car.year }}
+                  </p>
+				   <p>
+                    <i class="fa fa-check">
+                    </i>
+                    <strong>
+                      Popularność
+                    </strong>
+                    : {{ car.loan }} sprzedanych sztuk
+                  </p>
                 </div>
               </div>
             </div>
           </div>
-
+		 
+		  
+		  
+		  
+		  
           <div class="row">
             <div class="col-md-12">
               <!-- Tabs -->
@@ -99,6 +120,11 @@
                   <li>
                     <a href="#tab-2" data-toggle="tab">
                       Parametry
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#tab-3" data-toggle="tab">
+                      Recenzje
                     </a>
                   </li>
                 </ul>
@@ -126,7 +152,8 @@
                         <h3 class="section-title left">
                           Lista parametrów
                         </h3>
-	
+						
+						
                       </div>                     
                       
 					<ul>
@@ -140,7 +167,54 @@
                       
                     </div>
                   </div>
+                  
+                  <!-- Tab 3 -->
+                  <div class="tab-pane fade" id="tab-3">
+                    <div class="tab-body">
+				
+                      <div class="comment-list clearfix" id="comments">
+                           <div class="comment-list clearfix" id="comments">
+						<a href="{{ path('add_homepage', {id: car.id}) }}" class="link-add-comment anchor" hidefocus="true">
+                          Napisz recenzje
+                        </a>
+						</div>
+						{% if review is empty %}
+							<h2>
+							Ten samochód nie został jeszcze oceniony.
+							</h2>
+						{% endif %}
 						
+						
+                      
+                        <!-- Wpisy -->
+						
+	<ol>	
+{% for r in review %}	
+						
+    <li class="comment">
+        <div class="comment-body bb">
+            <div class="comment-avatar">
+                <div class="avatar"><img src="http://www.bt4.pl/dummy/59x59/232a87/e8e9f7.jpg" alt="">
+                </div>
+            </div>
+            <div class="comment-text">
+                <div class="comment-author clearfix">
+					<a href="#" class="link-author" hidefocus="true"><strong>{{ r.title }}</strong></a> </br>
+                    <a href="#" class="link-author" hidefocus="true"><small>autor: {{ r.user }}</small></a>
+                    <span class="comment-meta"><span class="comment-date">{{ r.date }}</span> | <a href="#addcomments" class="link-reply anchor" hidefocus="true">Reply</a>
+                    </span>
+                </div>
+                <div class="comment-entry">
+				{{ r.description | raw }}
+                   
+                </div>
+            </div>
+        </div>
+    </li>
+						
+        
+	{% endfor %}		
+ </ol> 
 						</div>
                     </div>
                   </div>
@@ -150,9 +224,13 @@
             </div>
           </div>
         </div>
-
+		
+		
+		 
 		  </div>
-
+		
+		
+		
       </div>
     </div>
   </div>
